@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Alumni Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="my-4 text-center">SACC Alumni Data Entry Form</h1>
+            <h6 class="my-4 text-center"> St. Augustine ... Pray for us</h6>
+        </header>
+        
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info" role="alert">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+
+        <style>
+            .required-field::after {
+                content: " *";
+                color: red;
+            }
+        </style>
+
+        <!-- Form -->
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="middlename">Middle Name:</label>
+                <input type="text" class="form-control" id="middlename" name="middlename">
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value=""> Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number:</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label for="entry">Year of Entry:</label>
+                <input type="text" class="form-control" id="entry" name="entry" required>
+            </div>
+
+            <div class="form-group">
+                <label for="completion">Year of Completion:</label>
+                <input type="text" class="form-control" id="completion" name="completion" required>
+            </div>
+
+            <div class="form-group">
+                <label for="programme">Programme Of Study:</label>
+                <input type="text" class="form-control" id="programme" name="programme" required>
+            </div>
+
+            <div class="form-group">
+                <label for="qualification">Current Highest Qualification:</label>
+                <input type="text" class="form-control" id="qualification" name="qualification" required>
+            </div>
+
+            <div class="form-group">
+                <label for="occupation">Current Occupation:</label>
+                <input type="text" class="form-control" id="occupation" name="occupation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="institution">Name Of Institution:</label>
+                <input type="text" class="form-control" id="institution" name="institution" required>
+            </div>
+
+            <div class="form-group">
+                <label for="residence">Place Of Residence:</label>
+                <input type="text" class="form-control" id="residence" name="residence" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sacraments">Sacraments Status:</label><br>
+                <input type="checkbox" name="sacraments" value="Baptism"> Baptism<br>
+                <input type="checkbox" name="sacraments" value="Confirmation"> Confirmation<br>
+                <input type="checkbox" name="sacraments" value="Holy Matrimony"> Holy Matrimony<br>
+                <input type="checkbox" name="sacraments" value="Holy Orders"> Holy Orders<br>
+                <input type="checkbox" name="sacraments" value="None"> None<br>
+            </div>
+
+            <div class="form-group">
+                <label for="society">Society:</label><br>
+                <input type="checkbox" name="society" value="Lectors"> Lectors<br>
+                <input type="checkbox" name="society" value="Knights of the Alter"> Knights of the Alter<br>
+                <input type="checkbox" name="society" value="Choir"> Choir<br>
+                <input type="checkbox" name="society" value="Ushers"> Ushers<br>
+                <input type="checkbox" name="society" value="CCR"> CCR<br>
+                <input type="checkbox" name="society" value="Christian Mothers"> Christian Mothers<br>
+                <input type="checkbox" name="society" value="Legion of Mary"> Legion of Mary<br>
+                <input type="checkbox" name="society" value="Sacred Heart"> Sacred Heart<br>
+                <input type="checkbox" name="society" value="CYO"> CYO<br>
+                <input type="checkbox" name="society" value="St. Augustine Mothers"> St. Augustine Mothers<br>
+                <input type="checkbox" name="society" value="Dagaare Choir"> Dagaare Choir<br>
+                <input type="checkbox" name="society" value="Frafra Choir"> Frafra Choir<br>
+                <input type="checkbox" name="society" value="None"> None<br>
+                <input type="checkbox" name="sacraments" value="Other" id="otherCheckbox" onclick="toggleOtherInput()"> Other<br>
+    
+                <!-- Hidden input for the custom 'Other' value -->
+                <input type="text" name="other_sacrament" id="otherInput" placeholder="Please specify" style="display: none;">
+                
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Function to show/hide the 'Other' input field based on checkbox selection
+        function toggleOtherInput() {
+            const otherCheckbox = document.getElementById('otherCheckbox');
+            const otherInput = document.getElementById('otherInput');
+            otherInput.style.display = otherCheckbox.checked ? 'block' : 'none';
+        }
+    </script>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
