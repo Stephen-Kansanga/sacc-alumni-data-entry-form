@@ -1,1 +1,1 @@
-To run this application, fork or download the files and ru the app.py file in a working environment.
+To run this application, fork or download the files and run the app.py file in a working environment.
